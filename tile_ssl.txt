@@ -1,0 +1,42 @@
+docker proxy to host using : https://github.com/flaccid/docker-tls-proxy
+
+docker run \
+  -i \
+  -e UPSTREAM_HOST=themaptiles.cloudapp.net \
+  -e FORCE_HTTPS=false \
+  -e ENABLE_HTTP2=true \
+  -e ENABLE_WEBSOCKET=true \
+  -e SELF_SIGNED=true \
+  -p 443:443 \
+    flaccid/tls-proxy
+
+
+Use -idt to run forever
+==============================================================================	
+
+docker run \
+  -i \
+  -e UPSTREAM_HOST=172.17.0.1  \
+  -e FORCE_HTTPS=false \
+  -e ENABLE_HTTP2=true \
+  -e ENABLE_WEBSOCKET=true \
+  -e SELF_SIGNED=true \
+  -p 443:443 \
+    flaccid/tls-proxy
+
+
+Using docket host IP. run command "ifconfig -a" to know docket IP
+===============================================================================
+docker run \
+  -i \
+  -e UPSTREAM_HOST=172.17.0.1  \
+  -e FORCE_HTTPS=false \
+  -e ENABLE_HTTP2=true \
+  -e ENABLE_WEBSOCKET=true \
+  -e SELF_SIGNED_SUBJECT='/C=AQ/ST=Antarctica/L=Dallas/O=TheMap/OU=DEV Department/CN=themaptiles.cloudapp.net' \
+  -e SELF_SIGNED=true \
+  -p 443:443 \
+    flaccid/tls-proxy
+
+If you want to customize selfsigned certificate
+===============================================================================
